@@ -5,6 +5,6 @@ all:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn:      mysql:host=localhost;dbname=router
-      username: root
+      dsn:      pgsql:host=10.10.4.66;dbname=router
+      username: postgres
       password: 

@@ -1,0 +1,16 @@
+CFProfile:
+  tableName: public.cf_profiles
+  columns:
+    id:
+      type:    integer
+      primary: true
+      autoincrement:
+        true
+    name:           string
+    name_en:        string
+    is_def_allowed: boolean
+  relations:
+    CFRule:
+      local:   id
+      foreign: profile_id
+      type:    many

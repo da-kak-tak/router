@@ -33,9 +33,7 @@ function link_to2($name, $routeName, $params, $options = array())
 function link_to1($name, $internal_uri, $options = array())
 {
   $html_options = _parse_attributes($options);
-
   $html_options = _convert_options_to_javascript($html_options);
-
   $absolute = false;
   if (isset($html_options['absolute_url']))
   {
@@ -47,21 +45,17 @@ function link_to1($name, $internal_uri, $options = array())
     $absolute = (boolean) $html_options['absolute'];
     unset($html_options['absolute']);
   }
-
   $html_options['href'] = url_for($internal_uri, $absolute);
-
   if (isset($html_options['query_string']))
   {
     $html_options['href'] .= '?'.$html_options['query_string'];
     unset($html_options['query_string']);
   }
-
   if (isset($html_options['anchor']))
   {
     $html_options['href'] .= '#'.$html_options['anchor'];
     unset($html_options['anchor']);
   }
-
   if (is_object($name))
   {
     if (method_exists($name, '__toString'))
@@ -73,13 +67,30 @@ function link_to1($name, $internal_uri, $options = array())
       throw new sfException(sprintf('Object of class "%s" cannot be converted to string (Please create a __toString() method).', get_class($name)));
     }
   }
-
   if (!strlen($name))
   {
     $name = $html_options['href'];
   }
-
-  return content_tag('a', $name, $html_options);
+  $tag = 'a';
+  switch (url_is1($html_options['href'], $absolute))
+  {
+    case 1: {
+      $tag = 'b';
+      unset($html_options['href']);
+      break;
+    }
+    case 2: {
+      if (!isset($html_options['class'])) {
+        $html_options['class'] = '';
+      }
+      else if ($html_options['class']) {
+        $html_options['class'] .= ' ';
+      }
+      $html_options['class'] .= 'selected';
+      break;
+    }
+  }
+  return content_tag($tag, $name, $html_options);
 }
 
 /**
@@ -131,6 +142,31 @@ function url_for()
     return call_user_func_array('url_for2', $arguments);
   }
 }
+
+//
+function url_is($internal_uri, $absolute = false)
+{
+  return url_is1(url_for($internal_uri, $absolute));
+}
+
+//
+function url_is1($href, $absolute = false)
+{
+  $selected = 0;
+
+  $sf_context = sfContext::getInstance();
+  $currentPath = $sf_context->getController()->genUrl( $sf_context->getRouting()->getCurrentInternalUri(true), array(), $absolute );
+
+  if ($href == $currentPath) {
+    $selected = 1;
+  }
+  elseif ($href == substr($currentPath, 0, strlen($href))) {
+    $selected = 2;
+  }
+
+  return $selected;
+}
+
 
 /**
  * Creates a <a> link tag of the given name using a routed URL

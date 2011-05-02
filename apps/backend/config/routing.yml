@@ -1,6 +1,55 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+#
+identities:
+  url:   /identities
+  param: { module: identities, action: identities }
+
+add_identity:
+  url:   /identities/add-one
+  param: { module: identities, action: add }
+
+identity:
+  url:   /identities/:id
+  param: { module: identities, action: identity }
+  requiments:
+    id: \d+
+
+#
+cf:
+  url:   /cf
+  param: { module: cf, action: profiles }
+
+add_cf_profile:
+  url:   /cf/add-profile
+  param: { module: cf, action: addProfile }
+
+cf_profile:
+  url:   /cf/:id
+  param: { module: cf, action: profile }
+#
+cf_profile_add_rule:
+  url:   /cf/:id/add-rule
+  param: { module: cf, action: addRule }
+#
+cf_profile_rules:
+  url:   /cf/:id/rules
+  param: { module: cf, action: rules }
+#
+cf_profile_update:
+  url:   /cf/:id/update
+  param: { module: cf, action: profileUpdate }
+#
+cf_rule:
+  url:   /cf/:profile/:rule
+  param: { module: cf, action: rule }
+#
+cf_rule_drop:
+  url:   /cf/:profile/:rule/drop-it
+  param: { module: cf, action: ruleDrop }
+
+
 # default rules
 homepage:
   url:   /

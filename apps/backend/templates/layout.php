@@ -9,6 +9,45 @@
     <?php include_javascripts() ?>
   </head>
   <body>
-    <?php echo $sf_content ?>
+
+    <div id="page">
+      <div id="header"></div>
+
+      <div class="">
+        <div id="navigation">
+<?php include_partial('global/menu', array(
+  'class' => 'menu',
+  'items' => array(
+    array(
+      'route' => '@identities',
+      'title' => 'Учетные записи',
+      'items' => array(
+        array(
+          'route' => '@add_identity',
+          'title' => 'Создание новой'
+        )
+      )
+    ),
+    array(
+      'route' => '@cf',
+      'title' => 'Контент-фильтр'
+    )
+  )
+)) ?> 
+        </div>
+        <div id="content">
+          <div id="content-header" style="margin-bottom:2em;">
+<?php include_slot('content-header') ?>
+
+          </div>
+          <div id="content-body">
+<?php echo $sf_content ?>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
   </body>
 </html>

@@ -1,0 +1,9 @@
+WorkPlace:
+  tableName: public.work_places
+  inheritance:
+    type:    concrete
+    extends: Identity
+  columns:
+    mac: string
+    ip:  string
+    

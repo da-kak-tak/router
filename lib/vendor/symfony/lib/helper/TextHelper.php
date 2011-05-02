@@ -285,3 +285,39 @@ function _auto_link_email_addresses($text)
 {
   return preg_replace('/([\w\.!#\$%\-+.]+@[A-Za-z0-9\-]+(\.[A-Za-z0-9\-]+)+)/', '<a href="mailto:\\1">\\1</a>', $text);
 }
+
+
+/**
+ *
+ */
+function different_end($count, $variants)
+{
+  $count_text = (string)$count;
+  $length = strlen($count_text);
+
+  $variant = 0;
+  switch($count_text[ $length - 1 ])
+  {
+    case '1':
+    {
+      if ($length < 2 || $count_text[ $length - 2 ] != 1)
+      {
+        $variant = 1;
+      }
+      break;
+    }
+
+    case '2':
+    case '3':
+    case '4':
+    {
+      if ($length < 2 || $count_text[ $length - 2 ] != 1)
+      {
+        $variant = 2;
+      }
+      break;
+    }
+  }
+
+  return "$count $variants[$variant]";
+}
