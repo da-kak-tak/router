@@ -5,7 +5,7 @@
 
 <div class="extended">
 <form
-  action="<?php echo url_for('@cf_profile_add_rule?id='.$profile->getNameEn()) ?>"
+  action="<?php echo url_for('@cf_rule?profile='.$profile->getNameEn().'&rule='.$rule->getId()) ?>"
   method="post"
 >
 
@@ -15,6 +15,9 @@
 <?php echo $form->renderHiddenFields() ?>
 
 <div class="" style="margin-top:.75em;">
+  <?php echo $form['is_enabled']->render() ?>
+  <label for="form_is_enabled">Акт.</label>
+  &nbsp;&nbsp;
   <?php echo $form['is_allowed']->render() ?>
   &nbsp;
   <?php echo $form['type_id']->render() ?>
@@ -25,7 +28,7 @@
       margin-left:1em;
     "
   >
-    <button type="submit">Добавить</button>
+    <button type="submit">Изменить</button>
   </span>
 </div>
 

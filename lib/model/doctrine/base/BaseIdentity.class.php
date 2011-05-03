@@ -11,8 +11,10 @@
  * @property boolean $is_enabled
  * @property boolean $is_inet_allowed
  * @property integer $inet_channels_id
+ * @property integer $profile_id
  * @property integer $auth_type
  * @property InetChannel $InetChannel
+ * @property CFProfile $CFProfile
  * 
  * @method integer     getId()               Returns the current record's "id" value
  * @method string      getName()             Returns the current record's "name" value
@@ -20,16 +22,20 @@
  * @method boolean     getIsEnabled()        Returns the current record's "is_enabled" value
  * @method boolean     getIsInetAllowed()    Returns the current record's "is_inet_allowed" value
  * @method integer     getInetChannelsId()   Returns the current record's "inet_channels_id" value
+ * @method integer     getProfileId()        Returns the current record's "profile_id" value
  * @method integer     getAuthType()         Returns the current record's "auth_type" value
  * @method InetChannel getInetChannel()      Returns the current record's "InetChannel" value
+ * @method CFProfile   getCFProfile()        Returns the current record's "CFProfile" value
  * @method Identity    setId()               Sets the current record's "id" value
  * @method Identity    setName()             Sets the current record's "name" value
  * @method Identity    setDescription()      Sets the current record's "description" value
  * @method Identity    setIsEnabled()        Sets the current record's "is_enabled" value
  * @method Identity    setIsInetAllowed()    Sets the current record's "is_inet_allowed" value
  * @method Identity    setInetChannelsId()   Sets the current record's "inet_channels_id" value
+ * @method Identity    setProfileId()        Sets the current record's "profile_id" value
  * @method Identity    setAuthType()         Sets the current record's "auth_type" value
  * @method Identity    setInetChannel()      Sets the current record's "InetChannel" value
+ * @method Identity    setCFProfile()        Sets the current record's "CFProfile" value
  * 
  * @package    router
  * @subpackage model
@@ -62,6 +68,9 @@ abstract class BaseIdentity extends sfDoctrineRecord
         $this->hasColumn('inet_channels_id', 'integer', null, array(
              'type' => 'integer',
              ));
+        $this->hasColumn('profile_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
         $this->hasColumn('auth_type', 'integer', null, array(
              'type' => 'integer',
              ));
@@ -72,6 +81,10 @@ abstract class BaseIdentity extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('InetChannel', array(
              'local' => 'inet_channels_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('CFProfile', array(
+             'local' => 'profile_id',
              'foreign' => 'id'));
     }
 }

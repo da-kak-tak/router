@@ -7,7 +7,13 @@
   .objects li {
     margin-bottom:.75em;
     }
+      .objects li.disabled a {
+        color:#ccc !important;
+        }
 </style>
+<?php if (!sizeof($rules)): ?>
+Нет ни одного правила
+<?php else: ?>
 <ul class="objects">
 <?php foreach ($rules as $itemRule): ?>
 
@@ -24,3 +30,4 @@
 
 <?php endforeach; ?>
 </ul>
+<?php endif; ?>

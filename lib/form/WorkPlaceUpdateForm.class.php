@@ -20,6 +20,11 @@ class WorkPlaceUpdateForm extends sfFormSymfony
         'model'     => 'InetChannel',
         'method'    => 'getName'
       )),
+      'profile_id'       => new sfWidgetFormDoctrineChoice(array(
+        'add_empty' => true,
+        'model'     => 'CFProfile',
+        'method'    => 'getName'
+      )),
       'is_inet_allowed'  => new sfWidgetFormInputCheckbox(),
       'mac'              => new sfWidgetFormInputText(),
       'ip'               => new sfWidgetFormInputText(),
@@ -31,6 +36,11 @@ class WorkPlaceUpdateForm extends sfFormSymfony
       'inet_channels_id' => new sfValidatorDoctrineChoice(array(
         'required' => false,
         'model'    => 'InetChannel',
+        'column'   => 'id'
+      )),
+      'profile_id'       => new sfValidatorDoctrineChoice(array(
+        'required' => false,
+        'model'    => 'CFProfile',
         'column'   => 'id'
       )),
       'is_inet_allowed'  => new sfValidatorBoolean(),

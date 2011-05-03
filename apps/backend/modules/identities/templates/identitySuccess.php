@@ -35,26 +35,8 @@
   </dd>
 </dl>
 
-<?php $field = $form['inet_channels_id'] ?>
-<dl class="form-row" style="margin-bottom:.5em;"">
-  <dt>Интернет канал</dt>
-  <dd>
-<?php echo $field->render() ?>
-<?php echo $field->renderError() ?>
-  </dd>
-</dl>
-
-<?php $field = $form['is_inet_allowed'] ?>
-<dl class="form-row">
-  <dt></dt>
-  <dd>
-<?php echo $field->render() ?>&nbsp;<label for="form_is_inet_allowed" style="font-size:90%;">Разрешить доступ в интернет</label>
-<?php echo $field->renderError() ?>
-  </dd>
-</dl>
-
 <?php $field = $form['mac'] ?>
-<dl class="form-row">
+<dl class="form-row" style="margin-top:2em;">
   <dt>МАК</dt>
   <dd>
 <?php echo $field->render() ?>
@@ -67,6 +49,33 @@
   <dt>АйПи адрес</dt>
   <dd>
 192.168.17.<?php echo $field->render(array('style' => 'width:3em;')) ?>
+<?php echo $field->renderError() ?>
+  </dd>
+</dl>
+
+<?php $field = $form['is_inet_allowed'] ?>
+<dl class="form-row" style="margin-top:2em;">
+  <dt></dt>
+  <dd>
+<?php echo $field->render() ?>&nbsp;<label for="form_is_inet_allowed" style="font-size:90%;">Разрешить доступ в интернет</label>
+<?php echo $field->renderError() ?>
+  </dd>
+</dl>
+
+<?php $field = $form['inet_channels_id'] ?>
+<dl class="form-row" style="margin-top:.5em;">
+  <dt>Интернет канал</dt>
+  <dd>
+<?php echo $field->render() ?>
+<?php echo $field->renderError() ?>
+  </dd>
+</dl>
+
+<?php $field = $form['profile_id'] ?>
+<dl class="form-row">
+  <dt>Фильтрация интернет трафика</dt>
+  <dd>
+<?php echo $field->render() ?>
 <?php echo $field->renderError() ?>
   </dd>
 </dl>

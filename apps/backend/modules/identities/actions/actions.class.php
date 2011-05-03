@@ -28,6 +28,7 @@ class identitiesActions extends sfActions
     $q = Doctrine_Core::getTable('Identity')
       ->createQuery('i')
       ->leftJoin('i.InetChannel c')
+      ->leftJoin('i.CFProfile p')
       ->orderBy('i.name');
     $this->identities = $q->fetchArray();
   }

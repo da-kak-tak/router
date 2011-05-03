@@ -34,13 +34,6 @@ class CFRuleForm extends sfFormSymfony
       )),
     ));
 
-    $this->getValidatorSchema()->setPostValidator(
-      new sfValidatorDoctrineUnique(array(
-        'model'  => 'CFRule',
-        'column' => array('profile_id', 'type_id', 'value')
-      ))
-    );
-
     $this->getWidgetSchema()->setNameFormat('form[%s]');
   }
 }

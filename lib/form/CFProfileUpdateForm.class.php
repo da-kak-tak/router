@@ -8,7 +8,7 @@
  * @author     Your name here 
  * @version    SVN: $Id: BaseForm.class.php 20147 2009-07-13 11:46:57Z FabianLange $
  */
-class AddCFProfileForm extends sfFormSymfony
+class CFProfileUpdateForm extends sfFormSymfony
 {
   public function configure()
   {
@@ -19,21 +19,9 @@ class AddCFProfileForm extends sfFormSymfony
     ));
 
     $this->setValidators(array(
-      'name'           => new sfValidatorAnd(array(
-        new sfValidatorString(),
-        new sfValidatorDoctrineUnique(array(
-          'model'  => 'CFProfile',
-          'column' => 'name'
-        ))
-      )),
-      'name_en'        => new sfValidatorAnd(array(
-        new sfValidatorRegex(array(
+      'name'           => new sfValidatorString(),
+      'name_en'        => new sfValidatorRegex(array(
           'pattern' => '/^[a-z-]*$/'
-        )),
-        new sfValidatorDoctrineUnique(array(
-          'model'  => 'CFProfile',
-          'column' => 'name_en'
-        ))
       )),
       'is_def_allowed' => new sfValidatorBoolean()
     ));

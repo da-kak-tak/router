@@ -17,10 +17,16 @@
       Имя и описание
     </th>
     <th
-      width=""
+      width="14%"
     >
       Интернет
     </th>
+    <th
+      width=""
+    >
+      Профиль фильтрации
+    </th>
+
   </tr>
 </thead>
 <tbody>
@@ -32,10 +38,10 @@
         style="color:black;"
       ><?php echo $itemIdentity['name'] ?></a>
       <?php if ($itemIdentity['description']): ?>
-      <div style="margin-top:.25em;"><?php echo $itemIdentity['description'] ?></div>
+      <div style="margin-top:.25em; font-size:90%;"><?php echo $itemIdentity['description'] ?></div>
       <?php endif; ?>
     </td>
-    <td style="font-size:80%;">
+    <td style="padding-left:.5em; font-size:80%;">
       <?php if (!$itemIdentity['is_inet_allowed']): ?>
       <span style="color:grey;">
         отключен
@@ -43,6 +49,12 @@
       <?php else: ?>
       <span style="color:green;"><?php echo $itemIdentity['InetChannel']['name'] ?></span>
       <?php endif; ?>
+    </td>
+    <td style="padding-left:.5em; font-size:80%;">
+      <a
+        href="<?php echo url_for('@cf_profile_rules?id='.$itemIdentity['CFProfile']['name_en']) ?>"
+        style="color:black;"
+      ><?php echo $itemIdentity['CFProfile']['name'] ?></a>
     </td>
   </tr>
 <?php endforeach; ?>

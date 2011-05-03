@@ -91,6 +91,12 @@ class cfActions extends sfActions
 
     $this->form = new CFRuleForm( array('profile_id' => $this->profile->getId()) );
     $this->form->setDefault('is_allowed', !$this->profile->getIsDefAllowed());
+    $this->form->getValidatorSchema()->setPostValidator(
+      new sfValidatorDoctrineUnique(array(
+        'model'  => 'CFRule',
+        'column' => array('profile_id', 'type_id', 'value')
+      ))
+    );
 
     if ($this->request->isMethod('POST'))
     {
@@ -105,7 +111,40 @@ class cfActions extends sfActions
         $this->redirect('@cf_profile_add_rule?id='.$this->profile->getNameEn());
       }
     }
+  }
 
+  /**
+   *
+   */
+  public function executeRule()
+  {
+    $q = Doctrine_Core::getTable('CFRule')
+      ->createQuery('r')
+      ->leftJoin('r.CFProfile p')
+      ->where('r.id = ?', $this->request->getParameter('rule'))
+      ->andWhere('p.name_en = ?', $this->request->getParameter('profile'));
+    $this->forward404Unless( $q->count() );
+
+    $this->rule = $q->fetchOne();
+    $this->profile = $this->rule->getCFProfile();
+
+    $this->form = new CFRuleForm(array('profile_id' => $this->profile->getId()));
+    $this->form->setWidget('is_enabled', new sfWidgetFormInputCheckbox());
+    $this->form->setValidator('is_enabled', new sfValidatorBoolean());
+    $this->form->setDefaults( $this->rule->toArray() );
+
+    if ($this->request->isMethod('POST'))
+    {
+      $this->form->bind( $this->request->getParameter('form') );
+      if ($this->form->isValid())
+      {
+        $this->rule->fromArray( $this->form->getValues() );
+        $this->rule->save();
+
+        $this->getUser()->setFlash('notice', '');
+        $this->redirect('@cf_rule?profile='.$this->profile->getNameEn().'&rule='.$this->rule->getId());
+      }
+    }
   }
 
   /**
@@ -117,6 +156,20 @@ class cfActions extends sfActions
       $this->profile = Doctrine_Core::getTable('CFProfile')->findOneByNameEn( $this->request->getParameter('id') )
       );
 
-    
+    $this->form = new CFProfileUpdateForm();
+    $this->form->setDefaults( $this->profile->toArray() );
+
+    if ($this->request->isMethod('POST'))
+    {
+      $this->form->bind( $this->request->getParameter('form') );
+      if ($this->form->isValid())
+      {
+        $this->profile->fromArray( $this->form->getValues() );
+        $this->profile->save();
+
+        $this->getUser()->setFlash('notice', '');
+        $this->redirect('@cf_profile_update?id='.$this->profile->getNameEn());
+      }
+    }
   }
 }

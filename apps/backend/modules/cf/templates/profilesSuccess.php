@@ -13,8 +13,8 @@
   href="<?php echo url_for('@add_cf_profile') ?>"
   style="
     position:relative;
-    left:-1em;
-    padding:.5em 1em;
+    left:-.75em;
+    padding:.35em .75em;
     -webkit-border-radius:.75em;
     background:#e6f3ff;
   "

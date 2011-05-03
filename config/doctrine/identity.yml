@@ -11,6 +11,7 @@ Identity:
       type:    boolean
       default: false
     inet_channels_id: integer
+    profile_id:       integer
     auth_type:        integer
     
   relations:
@@ -18,7 +19,10 @@ Identity:
       local:   inet_channels_id
       foreign: id
       type:    one
-    
+    CFProfile:
+      local:   profile_id
+      foreign: id
+      type:    one
 
 
     

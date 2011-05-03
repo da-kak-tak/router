@@ -10,17 +10,20 @@
  * @property string $name_en
  * @property boolean $is_def_allowed
  * @property Doctrine_Collection $CFRule
+ * @property Doctrine_Collection $Identity
  * 
  * @method integer             getId()             Returns the current record's "id" value
  * @method string              getName()           Returns the current record's "name" value
  * @method string              getNameEn()         Returns the current record's "name_en" value
  * @method boolean             getIsDefAllowed()   Returns the current record's "is_def_allowed" value
  * @method Doctrine_Collection getCFRule()         Returns the current record's "CFRule" collection
+ * @method Doctrine_Collection getIdentity()       Returns the current record's "Identity" collection
  * @method CFProfile           setId()             Sets the current record's "id" value
  * @method CFProfile           setName()           Sets the current record's "name" value
  * @method CFProfile           setNameEn()         Sets the current record's "name_en" value
  * @method CFProfile           setIsDefAllowed()   Sets the current record's "is_def_allowed" value
  * @method CFProfile           setCFRule()         Sets the current record's "CFRule" collection
+ * @method CFProfile           setIdentity()       Sets the current record's "Identity" collection
  * 
  * @package    router
  * @subpackage model
@@ -52,6 +55,10 @@ abstract class BaseCFProfile extends sfDoctrineRecord
     {
         parent::setUp();
         $this->hasMany('CFRule', array(
+             'local' => 'id',
+             'foreign' => 'profile_id'));
+
+        $this->hasMany('Identity', array(
              'local' => 'id',
              'foreign' => 'profile_id'));
     }

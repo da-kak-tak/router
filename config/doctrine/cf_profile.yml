@@ -14,3 +14,7 @@ CFProfile:
       local:   id
       foreign: profile_id
       type:    many
+    Identity:
+      local:   id
+      foreign: profile_id
+      type:    many
