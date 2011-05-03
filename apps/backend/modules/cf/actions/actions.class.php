@@ -28,7 +28,7 @@ class cfActions extends sfActions
     $q = Doctrine_Core::getTable('CFProfile')
       ->createQuery('p')
       ->orderBy('p.name');
-    $this->profiles = $q->fetchArray();
+    $this->profiles = $q->execute();
   }
 
   /**

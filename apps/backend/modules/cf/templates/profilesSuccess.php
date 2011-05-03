@@ -1,3 +1,4 @@
+<?php use_helper('Text') ?>
 
 <?php include_partial('global/content-header', array(
   'title' => 'Профили'
@@ -5,7 +6,7 @@
 
 <style type="text/css">
   ul.object {
-    margin-bottom:1em;
+    margin-bottom:1.5em;
     }
 </style>
 <div style="margin-bottom:1.5em;">
@@ -30,12 +31,22 @@
 <ul class="object">
   <li class="">
     <a
-      href="<?php echo url_for('@cf_profile?id='.$itemProfile['name_en']) ?>"
+      href="<?php echo url_for('@cf_profile?id='.$itemProfile->getNameEn()) ?>"
       style="color:black;"
-    ><?php echo $itemProfile['name'] ?></a>
+    ><?php echo $itemProfile->getName() ?></a>
     <div style="margin-top:.5em; font-size:80%;">
       По умолчанию: 
-      <?php echo $itemProfile['is_def_allowed'] ? 'все разрешено' : 'доступ к любым сайтам запрещен' ?>
+      <?php echo $itemProfile->getIsDefAllowed() ? 'все разрешено' : 'доступ к любым сайтам запрещен' ?>
+    </div>
+    <div style="margin-top:.5em; font-size:80%; color:#666;">
+      <?php if (!sizeof($itemProfile->getCFRule())): ?>
+        Правила не заданы.
+      <?php else: ?>
+        <?php echo different_end(sizeof($itemProfile->getCFRule()), array('правил', 'правило', 'правила')) ?>.
+      <?php endif; ?>
+      <?php if (sizeof($itemProfile->getIdentity())): ?>
+        Указан для <?php echo different_end(sizeof($itemProfile->getIdentity()), array('пользователей', 'пользователя', 'пользователей')) ?>
+      <?php endif; ?>
     </div>
   </li>
 </ul>
