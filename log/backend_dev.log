@@ -21639,3 +21639,307 @@ May 03 18:55:45 symfony [info] {sfWebDebugLogger} Partial "cf/_header" 10.75 ms 
 May 03 18:55:45 symfony [info] {sfWebDebugLogger} Partial "global/_content-header" 7.45 ms (1)
 May 03 18:55:45 symfony [info] {sfWebDebugLogger} Partial "global/_menu" 8.77 ms (4)
 May 03 18:55:45 symfony [info] {sfWebResponse} Send content (42740 o)
+May 03 18:57:00 symfony [info] {sfPatternRouting} Match route "cf_profile_rules" (/cf/:id/rules) for /cf/for-students/rules with parameters array (  'module' => 'cf',  'action' => 'rules',  'id' => 'for-students',)
+May 03 18:57:00 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 03 18:57:00 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 03 18:57:00 symfony [info] {cfActions} Call "cfActions->executeRules()"
+May 03 18:57:00 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+May 03 18:57:00 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.id AS p__id, p.name AS p__name, p.name_en AS p__name_en, p.is_def_allowed AS p__is_def_allowed FROM public.cf_profiles p WHERE (p.name_en = ?) LIMIT 1 - (for-students)
+May 03 18:57:00 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.id AS p__id, p.profile_id AS p__profile_id, p.is_allowed AS p__is_allowed, p.type_id AS p__type_id, p.value AS p__value, p.is_enabled AS p__is_enabled, p2.id AS p2__id, p2.name AS p2__name FROM public.cf_rules p LEFT JOIN public.cf_types p2 ON p.type_id = p2.id WHERE (p.profile_id = ?) ORDER BY p.value - (1)
+May 03 18:57:00 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/rulesSuccess.php"
+May 03 18:57:00 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/_header.php"
+May 03 18:57:00 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_content-header.php"
+May 03 18:57:00 symfony [info] {main} Set slot "content-header"
+May 03 18:57:00 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 03 18:57:00 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 03 18:57:00 symfony [info] {sfPHPView} Decorate content with "/usr/local/www/router/apps/backend/templates/layout.php"
+May 03 18:57:00 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/templates/layout.php"
+May 03 18:57:00 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 03 18:57:00 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 03 18:57:00 symfony [info] {main} Get slot "content-header"
+May 03 18:57:00 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 03 18:57:00 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 03 18:57:00 symfony [info] {sfWebDebugLogger} Configuration 4.07 ms (9)
+May 03 18:57:00 symfony [info] {sfWebDebugLogger} Factories 54.50 ms (1)
+May 03 18:57:00 symfony [info] {sfWebDebugLogger} Action "cf/rules" 96.99 ms (1)
+May 03 18:57:00 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (3)
+May 03 18:57:00 symfony [info] {sfWebDebugLogger} View "Success" for "cf/rules" 39.35 ms (1)
+May 03 18:57:00 symfony [info] {sfWebDebugLogger} Partial "cf/_header" 10.68 ms (1)
+May 03 18:57:00 symfony [info] {sfWebDebugLogger} Partial "global/_content-header" 7.39 ms (1)
+May 03 18:57:00 symfony [info] {sfWebDebugLogger} Partial "global/_menu" 8.68 ms (4)
+May 03 18:57:00 symfony [info] {sfWebResponse} Send content (42772 o)
+May 04 11:04:32 symfony [info] {sfPatternRouting} Match route "cf_profile_add_rule" (/cf/:id/add-rule) for /cf/for-students/add-rule with parameters array (  'module' => 'cf',  'action' => 'addRule',  'id' => 'for-students',)
+May 04 11:04:32 symfony [info] {myUser} Automatic user logout due to timeout
+May 04 11:04:32 symfony [info] {myUser} User is not authenticated
+May 04 11:04:32 symfony [info] {sfPatternRouting} Match route "cf_profile_update" (/cf/:id/update) for /cf/for-students/update with parameters array (  'module' => 'cf',  'action' => 'profileUpdate',  'id' => 'for-students',)
+May 04 11:04:32 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 04 11:04:32 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 04 11:04:32 symfony [info] {cfActions} Call "cfActions->executeAddRule()"
+May 04 11:04:33 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+May 04 11:04:33 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.id AS p__id, p.name AS p__name, p.name_en AS p__name_en, p.is_def_allowed AS p__is_def_allowed FROM public.cf_profiles p WHERE (p.name_en = ?) LIMIT 1 - (for-students)
+May 04 11:04:33 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/addRuleSuccess.php"
+May 04 11:04:33 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/_header.php"
+May 04 11:04:33 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_content-header.php"
+May 04 11:04:33 symfony [info] {main} Set slot "content-header"
+May 04 11:04:33 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:04:33 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:04:33 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT p.id AS p__id, p.name AS p__name FROM public.cf_types p - ()
+May 04 11:04:33 symfony [info] {sfPHPView} Decorate content with "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:04:33 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:04:33 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:04:33 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:04:33 symfony [info] {main} Get slot "content-header"
+May 04 11:04:33 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 04 11:04:33 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 04 11:04:33 symfony [info] {sfWebDebugLogger} Configuration 4.72 ms (9)
+May 04 11:04:33 symfony [info] {sfWebDebugLogger} Factories 219.64 ms (1)
+May 04 11:04:33 symfony [info] {sfWebDebugLogger} Action "cf/addRule" 366.72 ms (1)
+May 04 11:04:33 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (3)
+May 04 11:04:33 symfony [info] {sfWebDebugLogger} View "Success" for "cf/addRule" 173.91 ms (1)
+May 04 11:04:33 symfony [info] {sfWebDebugLogger} Partial "cf/_header" 17.33 ms (1)
+May 04 11:04:33 symfony [info] {sfWebDebugLogger} Partial "global/_content-header" 13.70 ms (1)
+May 04 11:04:33 symfony [info] {sfWebDebugLogger} Partial "global/_menu" 8.85 ms (4)
+May 04 11:04:33 symfony [info] {sfWebResponse} Send content (42283 o)
+May 04 11:04:33 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 04 11:04:33 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 04 11:04:33 symfony [info] {cfActions} Call "cfActions->executeProfileUpdate()"
+May 04 11:04:33 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+May 04 11:04:33 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.id AS p__id, p.name AS p__name, p.name_en AS p__name_en, p.is_def_allowed AS p__is_def_allowed FROM public.cf_profiles p WHERE (p.name_en = ?) LIMIT 1 - (for-students)
+May 04 11:04:33 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/profileUpdateSuccess.php"
+May 04 11:04:33 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/_header.php"
+May 04 11:04:33 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_content-header.php"
+May 04 11:04:33 symfony [info] {main} Set slot "content-header"
+May 04 11:04:33 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:04:33 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:04:33 symfony [info] {sfPHPView} Decorate content with "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:04:33 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:04:33 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:04:33 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:04:33 symfony [info] {main} Get slot "content-header"
+May 04 11:04:33 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 04 11:04:33 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 04 11:04:33 symfony [info] {sfWebDebugLogger} Configuration 4.04 ms (9)
+May 04 11:04:33 symfony [info] {sfWebDebugLogger} Factories 638.84 ms (1)
+May 04 11:04:33 symfony [info] {sfWebDebugLogger} Action "cf/profileUpdate" 112.89 ms (1)
+May 04 11:04:33 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+May 04 11:04:33 symfony [info] {sfWebDebugLogger} View "Success" for "cf/profileUpdate" 45.79 ms (1)
+May 04 11:04:33 symfony [info] {sfWebDebugLogger} Partial "cf/_header" 11.17 ms (1)
+May 04 11:04:33 symfony [info] {sfWebDebugLogger} Partial "global/_content-header" 7.39 ms (1)
+May 04 11:04:33 symfony [info] {sfWebDebugLogger} Partial "global/_menu" 8.62 ms (4)
+May 04 11:04:33 symfony [info] {sfWebResponse} Send content (40460 o)
+May 04 11:10:37 symfony [info] {sfPatternRouting} Match route "cf_profile_rules" (/cf/:id/rules) for /cf/for-students/rules with parameters array (  'module' => 'cf',  'action' => 'rules',  'id' => 'for-students',)
+May 04 11:10:37 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 04 11:10:37 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 04 11:10:37 symfony [info] {cfActions} Call "cfActions->executeRules()"
+May 04 11:10:37 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+May 04 11:10:37 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.id AS p__id, p.name AS p__name, p.name_en AS p__name_en, p.is_def_allowed AS p__is_def_allowed FROM public.cf_profiles p WHERE (p.name_en = ?) LIMIT 1 - (for-students)
+May 04 11:10:37 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.id AS p__id, p.profile_id AS p__profile_id, p.is_allowed AS p__is_allowed, p.type_id AS p__type_id, p.value AS p__value, p.is_enabled AS p__is_enabled, p2.id AS p2__id, p2.name AS p2__name FROM public.cf_rules p LEFT JOIN public.cf_types p2 ON p.type_id = p2.id WHERE (p.profile_id = ?) ORDER BY p.value - (1)
+May 04 11:10:37 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/rulesSuccess.php"
+May 04 11:10:37 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/_header.php"
+May 04 11:10:37 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_content-header.php"
+May 04 11:10:37 symfony [info] {main} Set slot "content-header"
+May 04 11:10:37 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:37 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:37 symfony [info] {sfPHPView} Decorate content with "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:10:37 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:10:37 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:37 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:37 symfony [info] {main} Get slot "content-header"
+May 04 11:10:37 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 04 11:10:37 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 04 11:10:37 symfony [info] {sfWebDebugLogger} Configuration 4.04 ms (9)
+May 04 11:10:37 symfony [info] {sfWebDebugLogger} Factories 54.39 ms (1)
+May 04 11:10:37 symfony [info] {sfWebDebugLogger} Action "cf/rules" 271.92 ms (1)
+May 04 11:10:37 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (3)
+May 04 11:10:37 symfony [info] {sfWebDebugLogger} View "Success" for "cf/rules" 52.54 ms (1)
+May 04 11:10:37 symfony [info] {sfWebDebugLogger} Partial "cf/_header" 10.69 ms (1)
+May 04 11:10:37 symfony [info] {sfWebDebugLogger} Partial "global/_content-header" 7.40 ms (1)
+May 04 11:10:37 symfony [info] {sfWebDebugLogger} Partial "global/_menu" 8.66 ms (4)
+May 04 11:10:37 symfony [info] {sfWebResponse} Send content (42739 o)
+May 04 11:10:39 symfony [info] {sfPatternRouting} Match route "cf_profile_add_rule" (/cf/:id/add-rule) for /cf/for-students/add-rule with parameters array (  'module' => 'cf',  'action' => 'addRule',  'id' => 'for-students',)
+May 04 11:10:39 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 04 11:10:39 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 04 11:10:39 symfony [info] {cfActions} Call "cfActions->executeAddRule()"
+May 04 11:10:39 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+May 04 11:10:39 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.id AS p__id, p.name AS p__name, p.name_en AS p__name_en, p.is_def_allowed AS p__is_def_allowed FROM public.cf_profiles p WHERE (p.name_en = ?) LIMIT 1 - (for-students)
+May 04 11:10:39 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/addRuleSuccess.php"
+May 04 11:10:39 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/_header.php"
+May 04 11:10:39 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_content-header.php"
+May 04 11:10:39 symfony [info] {main} Set slot "content-header"
+May 04 11:10:39 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:39 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:39 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT p.id AS p__id, p.name AS p__name FROM public.cf_types p - ()
+May 04 11:10:39 symfony [info] {sfPHPView} Decorate content with "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:10:39 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:10:39 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:39 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:39 symfony [info] {main} Get slot "content-header"
+May 04 11:10:39 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 04 11:10:39 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 04 11:10:39 symfony [info] {sfWebDebugLogger} Configuration 4.11 ms (9)
+May 04 11:10:39 symfony [info] {sfWebDebugLogger} Factories 56.70 ms (1)
+May 04 11:10:39 symfony [info] {sfWebDebugLogger} Action "cf/addRule" 152.81 ms (1)
+May 04 11:10:39 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (3)
+May 04 11:10:39 symfony [info] {sfWebDebugLogger} View "Success" for "cf/addRule" 89.83 ms (1)
+May 04 11:10:39 symfony [info] {sfWebDebugLogger} Partial "cf/_header" 10.70 ms (1)
+May 04 11:10:39 symfony [info] {sfWebDebugLogger} Partial "global/_content-header" 7.42 ms (1)
+May 04 11:10:39 symfony [info] {sfWebDebugLogger} Partial "global/_menu" 8.78 ms (4)
+May 04 11:10:39 symfony [info] {sfWebResponse} Send content (41572 o)
+May 04 11:10:41 symfony [info] {sfPatternRouting} Match route "cf_profile_rules" (/cf/:id/rules) for /cf/for-students/rules with parameters array (  'module' => 'cf',  'action' => 'rules',  'id' => 'for-students',)
+May 04 11:10:41 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 04 11:10:41 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 04 11:10:41 symfony [info] {cfActions} Call "cfActions->executeRules()"
+May 04 11:10:41 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+May 04 11:10:41 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.id AS p__id, p.name AS p__name, p.name_en AS p__name_en, p.is_def_allowed AS p__is_def_allowed FROM public.cf_profiles p WHERE (p.name_en = ?) LIMIT 1 - (for-students)
+May 04 11:10:41 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.id AS p__id, p.profile_id AS p__profile_id, p.is_allowed AS p__is_allowed, p.type_id AS p__type_id, p.value AS p__value, p.is_enabled AS p__is_enabled, p2.id AS p2__id, p2.name AS p2__name FROM public.cf_rules p LEFT JOIN public.cf_types p2 ON p.type_id = p2.id WHERE (p.profile_id = ?) ORDER BY p.value - (1)
+May 04 11:10:41 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/rulesSuccess.php"
+May 04 11:10:41 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/_header.php"
+May 04 11:10:41 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_content-header.php"
+May 04 11:10:41 symfony [info] {main} Set slot "content-header"
+May 04 11:10:41 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:41 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:41 symfony [info] {sfPHPView} Decorate content with "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:10:41 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:10:41 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:41 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:41 symfony [info] {main} Get slot "content-header"
+May 04 11:10:41 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 04 11:10:41 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 04 11:10:41 symfony [info] {sfWebDebugLogger} Configuration 4.07 ms (9)
+May 04 11:10:41 symfony [info] {sfWebDebugLogger} Factories 54.03 ms (1)
+May 04 11:10:41 symfony [info] {sfWebDebugLogger} Action "cf/rules" 209.40 ms (1)
+May 04 11:10:41 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (3)
+May 04 11:10:41 symfony [info] {sfWebDebugLogger} View "Success" for "cf/rules" 39.41 ms (1)
+May 04 11:10:41 symfony [info] {sfWebDebugLogger} Partial "cf/_header" 10.69 ms (1)
+May 04 11:10:41 symfony [info] {sfWebDebugLogger} Partial "global/_content-header" 7.39 ms (1)
+May 04 11:10:41 symfony [info] {sfWebDebugLogger} Partial "global/_menu" 8.72 ms (4)
+May 04 11:10:41 symfony [info] {sfWebResponse} Send content (42741 o)
+May 04 11:10:43 symfony [info] {sfPatternRouting} Match route "cf_rule" (/cf/:profile/:rule) for /cf/for-students/12 with parameters array (  'module' => 'cf',  'action' => 'rule',  'profile' => 'for-students',  'rule' => '12',)
+May 04 11:10:43 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 04 11:10:43 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 04 11:10:43 symfony [info] {cfActions} Call "cfActions->executeRule()"
+May 04 11:10:43 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+May 04 11:10:43 symfony [info] {Doctrine_Connection_Statement} execute : SELECT COUNT(*) AS num_results FROM (SELECT p.id FROM public.cf_rules p LEFT JOIN public.cf_profiles p2 ON p.profile_id = p2.id WHERE p.id = ? AND p2.name_en = ? GROUP BY p.id) dctrn_count_query - (12, for-students)
+May 04 11:10:43 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.id AS p__id, p.profile_id AS p__profile_id, p.is_allowed AS p__is_allowed, p.type_id AS p__type_id, p.value AS p__value, p.is_enabled AS p__is_enabled, p2.id AS p2__id, p2.name AS p2__name, p2.name_en AS p2__name_en, p2.is_def_allowed AS p2__is_def_allowed FROM public.cf_rules p LEFT JOIN public.cf_profiles p2 ON p.profile_id = p2.id WHERE (p.id = ? AND p2.name_en = ?) - (12, for-students)
+May 04 11:10:43 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/ruleSuccess.php"
+May 04 11:10:43 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/_header.php"
+May 04 11:10:43 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_content-header.php"
+May 04 11:10:43 symfony [info] {main} Set slot "content-header"
+May 04 11:10:43 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:43 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:43 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT p.id AS p__id, p.name AS p__name FROM public.cf_types p - ()
+May 04 11:10:43 symfony [info] {sfPHPView} Decorate content with "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:10:43 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:10:43 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:43 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:43 symfony [info] {main} Get slot "content-header"
+May 04 11:10:43 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 04 11:10:43 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 04 11:10:43 symfony [info] {sfWebDebugLogger} Configuration 4.06 ms (9)
+May 04 11:10:43 symfony [info] {sfWebDebugLogger} Factories 54.34 ms (1)
+May 04 11:10:43 symfony [info] {sfWebDebugLogger} Action "cf/rule" 219.50 ms (1)
+May 04 11:10:43 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.03 ms (4)
+May 04 11:10:43 symfony [info] {sfWebDebugLogger} View "Success" for "cf/rule" 136.68 ms (1)
+May 04 11:10:43 symfony [info] {sfWebDebugLogger} Partial "cf/_header" 11.66 ms (1)
+May 04 11:10:43 symfony [info] {sfWebDebugLogger} Partial "global/_content-header" 8.02 ms (1)
+May 04 11:10:43 symfony [info] {sfWebDebugLogger} Partial "global/_menu" 9.55 ms (4)
+May 04 11:10:43 symfony [info] {sfWebResponse} Send content (44837 o)
+May 04 11:10:45 symfony [info] {sfPatternRouting} Match route "cf_rule" (/cf/:profile/:rule) for /cf/for-students/12 with parameters array (  'module' => 'cf',  'action' => 'rule',  'profile' => 'for-students',  'rule' => '12',)
+May 04 11:10:45 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 04 11:10:45 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 04 11:10:45 symfony [info] {cfActions} Call "cfActions->executeRule()"
+May 04 11:10:45 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+May 04 11:10:45 symfony [info] {Doctrine_Connection_Statement} execute : SELECT COUNT(*) AS num_results FROM (SELECT p.id FROM public.cf_rules p LEFT JOIN public.cf_profiles p2 ON p.profile_id = p2.id WHERE p.id = ? AND p2.name_en = ? GROUP BY p.id) dctrn_count_query - (12, for-students)
+May 04 11:10:45 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.id AS p__id, p.profile_id AS p__profile_id, p.is_allowed AS p__is_allowed, p.type_id AS p__type_id, p.value AS p__value, p.is_enabled AS p__is_enabled, p2.id AS p2__id, p2.name AS p2__name, p2.name_en AS p2__name_en, p2.is_def_allowed AS p2__is_def_allowed FROM public.cf_rules p LEFT JOIN public.cf_profiles p2 ON p.profile_id = p2.id WHERE (p.id = ? AND p2.name_en = ?) - (12, for-students)
+May 04 11:10:45 symfony [info] {Doctrine_Connection_Statement} execute : SELECT COUNT(*) AS num_results FROM public.cf_types p WHERE p.id = ? - (1)
+May 04 11:10:45 symfony [info] {sfFrontWebController} Redirect to "http://router/backend_dev.php/cf/for-students/12"
+May 04 11:10:45 symfony [info] {sfWebResponse} Send status "HTTP/1.1 302 Found"
+May 04 11:10:45 symfony [info] {sfWebResponse} Send header "Location: http://router/backend_dev.php/cf/for-students/12"
+May 04 11:10:45 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 04 11:10:45 symfony [info] {sfWebDebugLogger} Configuration 3.57 ms (8)
+May 04 11:10:45 symfony [info] {sfWebDebugLogger} Factories 54.42 ms (1)
+May 04 11:10:45 symfony [info] {sfWebDebugLogger} Action "cf/rule" 262.89 ms (1)
+May 04 11:10:45 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (4)
+May 04 11:10:45 symfony [info] {sfWebResponse} Send content (119 o)
+May 04 11:10:46 symfony [info] {sfPatternRouting} Match route "cf_rule" (/cf/:profile/:rule) for /cf/for-students/12 with parameters array (  'module' => 'cf',  'action' => 'rule',  'profile' => 'for-students',  'rule' => '12',)
+May 04 11:10:46 symfony [info] {myUser} Flag old flash messages ("notice")
+May 04 11:10:46 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 04 11:10:46 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 04 11:10:46 symfony [info] {cfActions} Call "cfActions->executeRule()"
+May 04 11:10:46 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+May 04 11:10:46 symfony [info] {Doctrine_Connection_Statement} execute : SELECT COUNT(*) AS num_results FROM (SELECT p.id FROM public.cf_rules p LEFT JOIN public.cf_profiles p2 ON p.profile_id = p2.id WHERE p.id = ? AND p2.name_en = ? GROUP BY p.id) dctrn_count_query - (12, for-students)
+May 04 11:10:46 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.id AS p__id, p.profile_id AS p__profile_id, p.is_allowed AS p__is_allowed, p.type_id AS p__type_id, p.value AS p__value, p.is_enabled AS p__is_enabled, p2.id AS p2__id, p2.name AS p2__name, p2.name_en AS p2__name_en, p2.is_def_allowed AS p2__is_def_allowed FROM public.cf_rules p LEFT JOIN public.cf_profiles p2 ON p.profile_id = p2.id WHERE (p.id = ? AND p2.name_en = ?) - (12, for-students)
+May 04 11:10:46 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/ruleSuccess.php"
+May 04 11:10:46 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/_header.php"
+May 04 11:10:46 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_content-header.php"
+May 04 11:10:46 symfony [info] {main} Set slot "content-header"
+May 04 11:10:46 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:46 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:46 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT p.id AS p__id, p.name AS p__name FROM public.cf_types p - ()
+May 04 11:10:46 symfony [info] {sfPHPView} Decorate content with "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:10:46 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:10:46 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:46 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:46 symfony [info] {main} Get slot "content-header"
+May 04 11:10:46 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 04 11:10:46 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 04 11:10:46 symfony [info] {sfWebDebugLogger} Configuration 4.11 ms (9)
+May 04 11:10:46 symfony [info] {sfWebDebugLogger} Factories 53.08 ms (1)
+May 04 11:10:46 symfony [info] {sfWebDebugLogger} Action "cf/rule" 202.18 ms (1)
+May 04 11:10:46 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.03 ms (4)
+May 04 11:10:46 symfony [info] {sfWebDebugLogger} View "Success" for "cf/rule" 64.30 ms (1)
+May 04 11:10:46 symfony [info] {sfWebDebugLogger} Partial "cf/_header" 11.71 ms (1)
+May 04 11:10:46 symfony [info] {sfWebDebugLogger} Partial "global/_content-header" 8.06 ms (1)
+May 04 11:10:46 symfony [info] {sfWebDebugLogger} Partial "global/_menu" 9.43 ms (4)
+May 04 11:10:46 symfony [info] {sfWebResponse} Send content (45359 o)
+May 04 11:10:46 symfony [info] {myUser} Remove old flash messages ("notice")
+May 04 11:10:47 symfony [info] {sfPatternRouting} Match route "cf_profile_update" (/cf/:id/update) for /cf/for-students/update with parameters array (  'module' => 'cf',  'action' => 'profileUpdate',  'id' => 'for-students',)
+May 04 11:10:47 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 04 11:10:47 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 04 11:10:47 symfony [info] {cfActions} Call "cfActions->executeProfileUpdate()"
+May 04 11:10:47 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+May 04 11:10:47 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.id AS p__id, p.name AS p__name, p.name_en AS p__name_en, p.is_def_allowed AS p__is_def_allowed FROM public.cf_profiles p WHERE (p.name_en = ?) LIMIT 1 - (for-students)
+May 04 11:10:47 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/profileUpdateSuccess.php"
+May 04 11:10:47 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/modules/cf/templates/_header.php"
+May 04 11:10:47 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_content-header.php"
+May 04 11:10:47 symfony [info] {main} Set slot "content-header"
+May 04 11:10:47 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:47 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:47 symfony [info] {sfPHPView} Decorate content with "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:10:47 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:10:47 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:47 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:47 symfony [info] {main} Get slot "content-header"
+May 04 11:10:47 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 04 11:10:47 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 04 11:10:47 symfony [info] {sfWebDebugLogger} Configuration 4.02 ms (9)
+May 04 11:10:47 symfony [info] {sfWebDebugLogger} Factories 52.51 ms (1)
+May 04 11:10:47 symfony [info] {sfWebDebugLogger} Action "cf/profileUpdate" 157.70 ms (1)
+May 04 11:10:47 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+May 04 11:10:47 symfony [info] {sfWebDebugLogger} View "Success" for "cf/profileUpdate" 40.20 ms (1)
+May 04 11:10:47 symfony [info] {sfWebDebugLogger} Partial "cf/_header" 11.09 ms (1)
+May 04 11:10:47 symfony [info] {sfWebDebugLogger} Partial "global/_content-header" 7.39 ms (1)
+May 04 11:10:47 symfony [info] {sfWebDebugLogger} Partial "global/_menu" 8.74 ms (4)
+May 04 11:10:47 symfony [info] {sfWebResponse} Send content (40457 o)
+May 04 11:10:53 symfony [info] {sfPatternRouting} Match route "add_identity" (/identities/add-one) for /identities/add-one with parameters array (  'module' => 'identities',  'action' => 'add',)
+May 04 11:10:53 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 04 11:10:53 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 04 11:10:53 symfony [info] {identitiesActions} Call "identitiesActions->executeAdd()"
+May 04 11:10:53 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/modules/identities/templates/addSuccess.php"
+May 04 11:10:53 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_content-header.php"
+May 04 11:10:53 symfony [info] {main} Set slot "content-header"
+May 04 11:10:53 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:53 symfony [info] {sfPHPView} Decorate content with "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:10:53 symfony [info] {sfPHPView} Render "/usr/local/www/router/apps/backend/templates/layout.php"
+May 04 11:10:53 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:53 symfony [info] {sfPartialView} Render "/usr/local/www/router/apps/backend/templates/_menu.php"
+May 04 11:10:53 symfony [info] {main} Get slot "content-header"
+May 04 11:10:53 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 04 11:10:53 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 04 11:10:53 symfony [info] {sfWebDebugLogger} Configuration 82.23 ms (10)
+May 04 11:10:53 symfony [info] {sfWebDebugLogger} Factories 52.43 ms (1)
+May 04 11:10:53 symfony [info] {sfWebDebugLogger} Action "identities/add" 25.23 ms (1)
+May 04 11:10:53 symfony [info] {sfWebDebugLogger} View "Success" for "identities/add" 60.65 ms (1)
+May 04 11:10:53 symfony [info] {sfWebDebugLogger} Partial "global/_content-header" 3.84 ms (1)
+May 04 11:10:53 symfony [info] {sfWebDebugLogger} Partial "global/_menu" 5.34 ms (3)
+May 04 11:10:53 symfony [info] {sfWebResponse} Send content (34501 o)
