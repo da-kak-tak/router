@@ -1,0 +1,23 @@
+CFRule:
+  tableName: public.cf_rules
+  columns:
+    id:
+      type:    integer
+      primary: true
+      autoincrement:
+        true
+    profile_id: integer
+    is_allowed: boolean
+    type_id:    integer
+    value:      string
+    is_enabled: { type: boolean, default: true }
+
+  relations:
+    CFProfile:
+      local:   profile_id
+      foreign: id
+      type:    one
+    CFType:
+      local:   type_id
+      foreign: id
+      type:    one

@@ -1,0 +1,21 @@
+InetChannel:
+  tableName: public.inet_channels
+  columns:
+    id:
+      type:    integer
+      primary: true
+      autoincrement:
+        true
+    name:  string
+    ip:    string
+    gw:    string
+    iface: string
+  relations:
+    WorkPlaces:
+      local:   id
+      foreign: inet_channels_id
+      type:    many
+    
+
+
+    

@@ -1,0 +1,10 @@
+CFType:
+  tableName: public.cf_types
+  columns:
+    id:
+      type:    integer
+      primary: true
+      autoincrement:
+        true
+    name:             string
+    

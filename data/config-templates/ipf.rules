@@ -1,0 +1,66 @@
+
+pass  in  quick on lo0  all
+pass  out quick on lo0  all
+
+# vlan11 - relant local interface
+block in  quick on vlan11 from 192.168.0.0/16 to any
+block in  quick on vlan11 from 172.16.0.0/12 to any
+block in  quick on vlan11 from 127.0.0.0/8 to any
+block in  quick on vlan11 from 0.0.0.0/8 to any
+block in  quick on vlan11 from 169.254.0.0/16 to any
+block in  quick on vlan11 from 192.0.2.0/24 to any
+block in  quick on vlan11 from 204.152.64.0/23 to any
+block in  quick on vlan11 from 224.0.0.0/3 to any
+
+# ng0 - relant vpn
+block in  quick on ng0 from 192.168.0.0/16 to any
+block in  quick on ng0 from 172.16.0.0/12 to any
+block in  quick on ng0 from 10.0.0.0/8 to any
+block in  quick on ng0 from 127.0.0.0/8 to any
+block in  quick on ng0 from 0.0.0.0/8 to any
+block in  quick on ng0 from 169.254.0.0/16 to any
+block in  quick on ng0 from 192.0.2.0/24 to any
+block in  quick on ng0 from 204.152.64.0/23 to any
+block in  quick on ng0 from 224.0.0.0/3 to any
+
+# vlan10 - szt local
+block in  quick on vlan10 from 192.168.0.0/16 to any
+block in  quick on v1an10 from 172.16.0.0/12 to any
+block in  quick on vlan10 from 127.0.0.0/8 to any
+block in  quick on vlan10 from 0.0.0.0/8 to any
+block in  quick on vlan10 from 169.254.0.0/16 to any
+block in  quick on vlan10 from 192.0.2.0/24 to any
+block in  quick on vlan10 from 204.152.64.0/23 to any
+block in  quick on vlan10 from 224.0.0.0/3 to any
+
+#
+pass  out quick on vlan11 from any to any keep state
+pass  out quick on ng0 from any to any keep state
+pass  out quick on vlan10 from any to any keep state
+
+# vlan100 - local network
+# Локальные ресурсы Реланта
+pass  in  quick on vlan100 from 192.168.0.0/24 to 10.0.0.0/8 keep state
+pass  in  quick on vlan100 from 192.168.0.0/24 to 91.210.204.0/22 keep state
+
+pass  out quick from 192.168.0.254/32 to any keep state
+#
+pass  in  quick on vlan100 from 192.168.0.0/24 to 192.168.0.254/32 keep state
+
+
+# Внутренние ресурсы, доступные из "внешки"
+# Доступ по ssh с моей домашней и рабочей машин
+pass  in  quick on vlan11 proto tcp from 10.11.5.195/32 to any port = 22 flags S keep state
+pass  in  quick on vlan11 proto tcp from 91.210.204.169/32 to any port = 22 flags S keep state
+# ХТТП сервер
+pass  in  quick on vlan11 proto tcp from any to any port = 80 flags S keep state
+# ФТП
+pass  in  quick on vlan11 proto tcp from any to any port = 21 flags S keep state
+
+
+#hosts
+
+
+block in  quick all
+block out quick all
+

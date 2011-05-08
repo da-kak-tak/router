@@ -1,0 +1,9 @@
+
+#hosts-with-filtering
+
+map vlan11 192.168.0.0/24 -> 0.0.0.0/32 proxy port ftp ftp/tcp
+map vlan11 192.168.0.0/24 -> 0.0.0.0/32 portmap tcp/udp auto
+map vlan11 192.168.0.0/24 -> 0.0.0.0/32
+
+map ng0 192.168.0.0/24 -> 0.0.0.0/32
+map vlan10 192.168.0.0/24 -> 0.0.0.0/32

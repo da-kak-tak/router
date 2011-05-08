@@ -1,0 +1,28 @@
+Identity:
+  tableName: public.identities
+  columns:
+    id:
+      type:    integer
+      primary: true
+    name:             string
+    description:      string
+    is_enabled:       { type: boolean, default: true }
+    is_inet_allowed:
+      type:    boolean
+      default: false
+    inet_channels_id: integer
+    profile_id:       integer
+    auth_type:        integer
+    
+  relations:
+    InetChannel:
+      local:   inet_channels_id
+      foreign: id
+      type:    one
+    CFProfile:
+      local:   profile_id
+      foreign: id
+      type:    one
+
+
+    
