@@ -15,7 +15,45 @@ class routerConfigsTask extends sfBaseTask
     $databaseManager = new sfDatabaseManager($this->configuration);
     $connection = $databaseManager->getDatabase('doctrine')->getConnection();
 
-    //
+    $config = sfFactoryConfigHandler::getConfiguration($this->configuration->getConfigPaths('config/app.yml'));
+
+    /**
+     *  dhcpd.conf
+     */
+    $dhcpd_config = '/www/router/tmp/dhcpd.conf';
+    
+    $q = Doctrine_Core::getTable('WorkPlace')
+      ->createQuery('p')
+      ->where('p.ip IS NOT NULL')
+      ->andWhere('p.mac IS NOT NULL')
+      ->orderBy('p.name');
+    $items = $q->fetchArray();
+
+    $hosts = array();
+    foreach ($items as $itemHost)
+    {
+      $hosts []= sprintf(
+        'host %s { hardware ethernet %s; fixed-address %s; }',
+        $itemHost['name'], $itemHost['mac'], $itemHost['ip']
+        );
+    }
+
+    file_put_contents(
+      $dhcpd_config,
+      str_replace(
+        '#hosts',
+        implode("\n", $hosts),
+        file_get_contents('./data/config-templates/dhcpd.conf')
+        )
+      );
+
+    
+    /**
+     *  ipf.rules & ipnat.rules
+     */
+    $ipf_config = '/www/router/tmp/ipf.rules';
+    $ipnat_config = '/www/router/tmp/ipnat.rules';
+    
     $q = Doctrine_Core::getTable('Identity')
       ->createQuery('i')
       ->leftJoin('i.InetChannel c')
@@ -43,23 +81,45 @@ class routerConfigsTask extends sfBaseTask
       if ($itemIdentity['profile_id'])
       {
         $ipnat_rules []= sprintf(
-          'rdr eth0 %s/32 port 80 -> 127.0.0.1 port 3128',
-          $itemIdentity['ip']
+          'rdr %s %s/32 port 80 -> 127.0.0.1 port 3128',
+          $config['router']['local_iface'], $itemIdentity['ip']
           );
       }
       else
       {
         $ipfilter_rules []= sprintf(
-          'pass in quick on eth0 to %s:%s from %s/32 to any keep state',
-          $itemIdentity['InetChannel']['iface'], $itemIdentity['InetChannel']['gw'], $itemIdentity['ip']
+          'pass in quick on %s to %s:%s from %s/32 to any keep state',
+          $config['router']['local_iface'], $itemIdentity['InetChannel']['iface'], $itemIdentity['InetChannel']['gw'], $itemIdentity['ip']
           );
       }
     }
 
+    file_put_contents(
+      $ipf_config,
+      str_replace(
+        '#hosts',
+        implode("\n", $ipfilter_rules),
+        file_get_contents('./data/config-templates/ipf.rules')
+        )
+      );
+
+    file_put_contents(
+      $ipnat_config,
+      str_replace(
+        '#hosts-with-filtering',
+        implode("\n", $ipnat_rules),
+        file_get_contents('./data/config-templates/ipnat.rules')
+      )
+    );
+    
+
     /**
-     *
+     * squid
      */
-    $acl_list = array();
+    $squid_config = '/www/router/tmp/squid.config';
+    $squid_lists_dir = '/www/router/tmp/lists';
+
+    $acl = array();
     $http_access_list = array();
 
     $q = Doctrine_Core::getTable('CFProfile')
@@ -68,7 +128,24 @@ class routerConfigsTask extends sfBaseTask
     $profiles = $q->fetchArray();
     foreach ($profiles as $itemProfile)
     {
-      /* Список правил */
+      // Клиенты
+      $clients = array();
+      $q = Doctrine_Core::getTable('WorkPlace')
+        ->createQuery('p')
+        ->where('p.profile_id = ?', $itemProfile['id']);
+
+      $allClients = $q->fetchArray();
+      foreach ($allClients as $itemClient)
+      {
+        $clients []= $itemClient['ip'];
+      }
+      $acl []= sprintf(
+        'acl %s src "%s"',
+        "$itemProfile[name_en]-clients", "$squid_lists_dir/$itemProfile[name_en]-clients"
+        );
+      file_put_contents("$squid_lists_dir/$itemProfile[name_en]-clients", implode("\n", $clients));
+
+      // Список правил
       $rules = array();
       $q = Doctrine_Core::getTable('CFRule')
         ->createQuery('r')
@@ -76,7 +153,6 @@ class routerConfigsTask extends sfBaseTask
         ->where('r.profile_id = ?', $itemProfile['id'])
         ->orderBy('r.value');
       $allRules = $q->fetchArray();
-      
       foreach ($allRules as $itemRule)
       {
         $rules[ $itemRule['CFType']['name'] ][ $itemRule['is_allowed'] ] []= $itemRule['value'];
@@ -87,24 +163,36 @@ class routerConfigsTask extends sfBaseTask
         foreach ($typeItems as $access => $accessItems)
         {
           $item = "$itemProfile[name_en]-$type-$access";
-          $acl_list []= sprintf(
+          $acl []= sprintf(
             'acl %s %s "%s"',
-            "$item", $type, "/usr/local/etc/squid/lists/$item"
+            "$item", $type, "$squid_lists_dir/$item"
             );
           
           $http_access_list []= sprintf(
             'http_access %s %s %s',
-            $access ? 'allow' : 'deny', "$itemProfile[name_en]-users", "$item"
+            $access ? 'allow' : 'deny', "$itemProfile[name_en]-clients", "$item"
             );
         }
+        file_put_contents("$squid_lists_dir/$item", implode("\n", $accessItems));
       }
       //
       $http_access_list []= sprintf(
         'http_access %s %s',
-        $itemProfile['is_def_allowed'] ? 'allow' : 'deny',  "$itemProfile[name_en]-users"
+        $itemProfile['is_def_allowed'] ? 'allow' : 'deny',  "$itemProfile[name_en]-clients"
         );
     }
 
-    print_r( $http_access_list );
+    $template = file_get_contents('./data/config-templates/squid.conf');
+    $template = str_replace(
+      '#acl',
+      implode("\n", $acl),
+      $template
+      );
+    $template = str_replace(
+      '#http_access',
+      implode("\n", $http_access_list),
+      $template
+      );
+    file_put_contents($squid_config, $template);
   }
 }

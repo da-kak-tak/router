@@ -48,7 +48,7 @@
 <dl class="form-row">
   <dt>АйПи адрес</dt>
   <dd>
-192.168.17.<?php echo $field->render(array('style' => 'width:3em;')) ?>
+<?php echo $config['router']['local_network'] ?><?php echo $field->render(array('style' => 'width:3em;')) ?>
 <?php echo $field->renderError() ?>
   </dd>
 </dl>

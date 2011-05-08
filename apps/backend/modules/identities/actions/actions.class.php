@@ -66,6 +66,8 @@ class identitiesActions extends sfActions
    */
   public function executeIdentity()
   {
+    $this->config = sfFactoryConfigHandler::getConfiguration( $this->getContext()->getConfiguration()->getConfigPaths('config/app.yml') );
+
     $this->forward404Unless(
       $identity = Doctrine_Core::getTable('Identity')->findOneByName(
         $this->request->getParameter('id')
@@ -94,7 +96,7 @@ class identitiesActions extends sfActions
       {
         $this->identity->fromArray( $this->form->getValues() );
 
-        $ip = '192.168.1.'.$this->form->getValue('ip');
+        $ip = $this->config['router']['local_network'].$this->form->getValue('ip');
         $this->identity->setIP($ip);
 
         if ($this->form->getValue('inet_channels_id') === null
